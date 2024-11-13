@@ -42,6 +42,7 @@ export const 清屏撤回 = karin.command(/^#清屏(\d+)?/, async (e) => {
 
 export const QuitGroup = karin.command(/^#?退群/, async (e) => {
   const group_id = e.msg.replace(/#?退群/g, '').trim() || e.group_id
+  if (group_id !== e.group_id && !e.isMaster && !e.isAdmin) return e.reply('只有主人才能操作其他群')
 
   try {
     await e.bot.GetGroupInfo(group_id)
@@ -64,7 +65,7 @@ export const QuitGroup = karin.command(/^#?退群/, async (e) => {
     await e.reply('\n错误: 未知原因❌', { at: true })
     return true
   }
-}, { name: '退群', priority: '-1', permission: 'master' })
+}, { name: '退群', priority: '-1', permission: 'group.admin' })
 
 /**
  * 看群头像

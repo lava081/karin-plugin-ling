@@ -18,4 +18,4 @@ if (!e.isGroup) return e.reply('请在群聊中执行')
   if (e.msg.includes('下班')) {
   return await Edit.EditAdd(e, '下班咯~', '已经是下班状态咯~', 'NoWork', e.group_id, 'other')
   }
-}, { permission: 'master' })
+}, { permission: 'group.admin' })

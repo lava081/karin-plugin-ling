@@ -8,7 +8,7 @@ export const accept = karin.accept('notice.group_member_increase', async (e) => 
 let data = Config.Other.accept.BlackGroup
 let data1 = Config.Other.Test
   if (data.includes(e.group_id) && !data1.includes(e.group_id)) return false
- if (!data.includes(e.group_id)) await e.reply('\n欢迎加入本群୯(⁠*⁠´⁠ω⁠｀⁠*⁠)୬', { at: true })
+ if (!data.includes(e.group_id)) await e.reply(Config.Other.WelcomeGroupMessage || '\n欢迎加入本群୯(⁠*⁠´⁠ω⁠｀⁠*⁠)୬', { at: true })
   if (!data1.includes(e.group_id)) return false
   let num = Math.floor(Math.random() * (999999 - 100000 + 1)) + 100000
   let user_id = e.user_id
@@ -124,14 +124,15 @@ export const deal_group_apply = karin.accept('request.group_apply',
 )
 
 export const Notification = karin.command(/^#(开启|关闭)进群通知/, async (e) => {
-  let group_id = e.msg.replace(/#(开启|关闭)进群通知/, '').trim() || e.group_id
+  const group_id = e.msg.replace(/#(开启|关闭)进群通知/, '').trim() || e.group_id
+  if (group_id !== e.group_id && !e.isMaster && !e.isAdmin) return e.reply('只有主人才能操作其他群')
   if (!group_id) return e.reply('请输入正确的群号')
   if (e.msg.includes('关闭')) {
   return await Edit.EditAdd(e, `已经关闭群『${group_id}』的进群通知`, `群『${group_id}』的进群通知已经处于关闭状态`, 'accept.BlackGroup', group_id, 'other')
   }
   if (e.msg.includes('开启'))
   return await Edit.EditDel(e, `已经开启群『${group_id}』的进群通知`, `群『${group_id}』的进群通知目前已经处于开启状态`, 'accept.BlackGroup', group_id, 'other')
-}, { permission: 'master' })
+}, { permission: 'group.admin' })
 
 export const test = karin.command(/^#(开启|关闭)进群验证$/, async (e) => {
 if (!e.isGroup) return e.reply('请在群聊中执行')

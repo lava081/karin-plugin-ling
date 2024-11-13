@@ -8,6 +8,9 @@ accept:
 NoWork:
   - "636023444"
 
+# 进群通知内容
+WelcomeGroupMessage: "\n欢迎加入本群୯(⁠*⁠´⁠ω⁠｀⁠*⁠)୬"
+
 # 进群验证
 Test:
   - "114514"

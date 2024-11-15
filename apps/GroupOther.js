@@ -65,4 +65,4 @@ export const ModifyMemberCard = karin.command(/^#改群昵称/, async (e) => {
     return true
   }
   return true
-}, { name: '改群昵称', priority: '-1', permission: 'group.admin' })
+}, { name: '改群昵称', priority: '-1' })

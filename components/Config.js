@@ -8,6 +8,8 @@ import YamlReader from './YamlReader.js'
 
 class Config {
   constructor () {
+    this.dir = `config/plugin/${Version.pluginName}/`
+    this.defdir = `${Version.pluginPath}/config/default_config/`
     this.config = {}
     /** 监听文件 */
     this.watcher = { config: {}, defSet: {} }
@@ -17,9 +19,9 @@ class Config {
 
   /** 初始化配置 */
   initCfg () {
-    const path = `${Version.pluginPath}/config/config/`
+    const path = this.dir
     if (!fs.existsSync(path)) fs.mkdirSync(path)
-    const pathDef = `${Version.pluginPath}/config/default_config/`
+    const pathDef = this.defdir
     const files = fs.readdirSync(pathDef).filter(file => file.endsWith('.yaml'))
     for (const file of files) {
       if (!fs.existsSync(`${path}${file}`)) {
@@ -43,7 +45,7 @@ class Config {
   get Other () {
     return this.getDefOrConfig('other')
   }
-  
+
   get state () {
     return this.getDefOrConfig('state')
   }
@@ -77,7 +79,7 @@ class Config {
    * @param name 名称
    */
   getYaml (type, name) {
-    const file = `${Version.pluginPath}/config/${type}/${name}.yaml`
+    const file = `${(type === 'config') ? this.dir : this.defdir}${name}.yaml`
     const key = `${type}.${name}`
 
     if (this.config[key]) return this.config[key]
@@ -113,7 +115,7 @@ class Config {
    * @param {'config'|'default_config'} type 配置文件或默认
    */
   modify (name, key, value, type = 'config') {
-    const path = `${Version.pluginPath}/config/${type}/${name}.yaml`
+    const path = `${(type === 'config') ? this.dir : this.defdir}${name}.yaml`
     new YamlReader(path).set(key, value)
     delete this.config[`${type}.${name}`]
   }

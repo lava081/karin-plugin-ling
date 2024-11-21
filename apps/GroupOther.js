@@ -6,10 +6,6 @@ import { karin, segment, common } from 'node-karin'
  */
 export const ModifyGroupName = karin.command(/^#改群名/, async (e) => {
   if (!e.isGroup) return e.reply('请在群聊中执行')
-  if (!(['owner', 'admin'].includes(e.sender.role) || e.isMaster)) {
-    await e.reply('暂无权限，只有管理员才能操作')
-    return true
-  }
   const info = await e.bot.GetGroupMemberInfo(e.group_id, e.self_id)
   if (!(['owner', 'admin'].includes(info.role))) {
     await e.reply('少女做不到呜呜~(>_<)~')
@@ -26,7 +22,7 @@ export const ModifyGroupName = karin.command(/^#改群名/, async (e) => {
     return true
   }
   return true
-}, { name: '改群名', priority: '-1' })
+}, { name: '改群名', priority: '-1', permission: 'group.admin' })
 
 /**
  * 获取禁言列表

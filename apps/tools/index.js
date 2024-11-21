@@ -7,5 +7,5 @@ export {
   GroupNotice,
   GroupTest,
   Work,
-  ProhibitedWords
+  ProhibitedWords,
 }

@@ -9,7 +9,7 @@ const Work = async (e) => {
   if (e.msg.includes('上班') || e.msg.includes('下班')) {
     return false
   }
-   let data = Config.Other.NoWork
+  const data = Config.Other.NoWork
   if (data.includes(e.group_id)) {
     return true
   }

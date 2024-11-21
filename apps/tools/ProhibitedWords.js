@@ -7,28 +7,28 @@ const ProhibitedWords = async (e) => {
     return false
   }
   let type = e.group_id
-  let data = Config.GroupYaml
+  const data = Config.GroupYaml
   type = data[`${type}`] ? type : 'default'
-  let rules = (data[`${type}`] && data[`${type}`]['enable']) || ''
+  const rules = (data[`${type}`] && data[`${type}`]['enable']) || ''
   if (!rules) return false
-  let words = data[`${type}`]['words']
-  let match = data[`${type}`]['rule']
+  const words = data[`${type}`]['words']
+  const match = data[`${type}`]['rule']
   if (match == 0 && words.some(word => e.msg.includes(word))) {
-    if ((['owner', 'admin'].includes(e.sender.role) || e.isMaster)) {
-    return false
+    if ((['owner', 'admin'].includes(e.sender.role) || e.isMaster || e.isAdmin)) {
+      return false
     } else {
-    await e.bot.RecallMessage(e.contact, e.message_id)
-    await e.reply('请不要发布违规内容', {at: true})
-    return true
+      await e.bot.RecallMessage(e.contact, e.message_id)
+      await e.reply('请不要发布违规内容', { at: true })
+      return true
     }
   }
   if (match == 1 && words.some(word => e.msg === word)) {
-    if ((['owner', 'admin'].includes(e.sender.role) || e.isMaster)) {
-    return false
+    if ((['owner', 'admin'].includes(e.sender.role) || e.isMaster || e.isAdmin)) {
+      return false
     } else {
-    await e.bot.RecallMessage(e.contact, e.message_id)
-    await e.reply('请不要发布违规内容', {at: true})
-    return true
+      await e.bot.RecallMessage(e.contact, e.message_id)
+      await e.reply('请不要发布违规内容', { at: true })
+      return true
     }
   }
 }

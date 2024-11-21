@@ -43,15 +43,16 @@ class Config {
   get Other () {
     return this.getDefOrConfig('other')
   }
-  
+
   get Cof () {
     return this.getDefOrConfig('COF')
   }
-  
+
   get state () {
     return this.getDefOrConfig('state')
   }
-  get GroupYaml() {
+
+  get GroupYaml () {
     return this.getDefOrConfig('group')
   }
 

@@ -18,7 +18,7 @@ export const State = karin.command(/^#(铃)?(状态|status)(pro)?(debug)?$/i, as
     // 渲染图片
     const img = await Render.render('state/index', {
       ...data,
-      scale: 1.4
+      scale: 1.4,
     })
     await e.reply(img)
   } catch (error) {
@@ -32,7 +32,7 @@ export const Monitor = karin.command(/^#?(监控|monitor)$/i, async (e) => {
   const data = await getMonitorData()
   const img = await Render.render('state/monitor', data, {
     e,
-    scale: 1.4
+    scale: 1.4,
   })
   return e.reply(img)
 }, { name: '监控', priority: '-1' })

@@ -1,7 +1,7 @@
 import { karin, segment, common, Cfg, YamlEditor } from 'node-karin'
 import { Config } from '#components'
 export const test = karin.command(/^测试/, async (e) => {
-logger.info(`\x1b[34m                 .::::..
+  logger.info(`\x1b[34m                 .::::..
       ::::rrr7QQJi::i:iirijQBBBQB.
       BBQBBBQBP. ......:::..1BBBB
       .BuPBBBX  .........r.  vBQL  :Y.
@@ -23,6 +23,5 @@ logger.info(`\x1b[34m                 .::::..
    QB  .:5.71Si..........  .sr7ivi:U
    7BJ .7: i2. ........:..  sJ7Lvr7s
     jBBdD. :. ........:r... YB  Bi
-       :7j1.                 :  :\x1b[0m`);
-
+       :7j1.                 :  :\x1b[0m`)
 }, { name: '测试', priority: '-1' })

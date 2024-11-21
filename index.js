@@ -1,8 +1,6 @@
 import { Version, Config } from '#components'
 import { logger } from 'node-karin'
 
-global.Ling = new (await import("./Ling.js")).default
-
 logger.info('-----------------')
 logger.info(`${Version.pluginName}${Config.package.version}初始化~`)
 logger.info('\x1b[34m少女祈祷中...\x1b[0m')

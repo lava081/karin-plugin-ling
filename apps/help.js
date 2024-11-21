@@ -9,7 +9,7 @@ export const help = karin.command(/^#?(铃|ling)(帮助|菜单|help)$/i, async (
   const helpGroup = []
 
   lodash.forEach(helpList, (group) => {
-    if (group.auth && group.auth === 'master' && !e.isMaster) {
+    if (group.auth && group.auth === 'master' && !e.isMaster && !e.isAdmin) {
       return true
     }
 

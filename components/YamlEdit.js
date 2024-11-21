@@ -1,7 +1,7 @@
 import { YamlEditor, Cfg, logger } from 'node-karin'
 import Version from './Version.js'
 
-let CfgPath = `${Version.pluginPath}/config/config`
+const CfgPath = `${Version.pluginPath}/config/config`
 const EditAddend = async (e, Msg1, Msg2, term, value, path) => {
   try {
     const yaml = new YamlEditor(`${CfgPath}/${path}.yaml`)
@@ -64,7 +64,7 @@ const EditSet = async (e, Msg1, Msg2, term, value, path) => {
 const EditTest = async (e) => {
   try {
     const yaml = new YamlEditor(`${CfgPath}/group.yaml`)
-   let value = []
+    const value = []
     yaml.set(`${e.group_id}.rule`, 1)
     yaml.set(`${e.group_id}.words`, value)
     yaml.set(`${e.group_id}.enable`, true)
@@ -81,5 +81,5 @@ export default {
   EditAddend,
   EditRemove,
   EditTest,
-  EditSet
+  EditSet,
 }

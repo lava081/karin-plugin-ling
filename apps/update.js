@@ -30,7 +30,7 @@ export class MusicUpdate extends plugin {
       e.reply(`正在更新${Version.pluginName}，请稍后...`)
       return false
     }
-    e.reply(`开始执行更新操作...`)
+    e.reply('开始执行更新操作...')
     uping = true
     setTimeout(() => {
       uping = false
@@ -61,9 +61,9 @@ export class MusicUpdate extends plugin {
 
   async update_log (e = this.e) {
     try {
-    let cmd = `git --no-pager log -20 --format="[%ad]%s %n" --date="format:%m-%d %H:%M"`
+      const cmd = 'git --no-pager log -20 --format="[%ad]%s %n" --date="format:%m-%d %H:%M"'
       const commits = await exec(cmd, false, { cwd: Version.pluginPath })
-      let commit = commits.stdout.trim()
+      const commit = commits.stdout.trim()
       const data = commit.replace(/\n\s*\n/g, '\n')
       const commitlist = commit
         .split('\n')
@@ -71,7 +71,7 @@ export class MusicUpdate extends plugin {
         .map((item) => item.trimEnd())
       this.replyForward(common.makeForward(commitlist))
       return true
-    } catch(error) {
+    } catch (error) {
       await e.reply(`\n获取更新日志失败：\n${error.message}`, { at: true })
       return true
     }

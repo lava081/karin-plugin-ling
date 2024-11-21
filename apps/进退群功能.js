@@ -87,7 +87,9 @@ export const Notification = karin.command(/^#(开启|关闭)进群通知/, async
   if (e.msg.includes('关闭')) {
     return await Edit.EditAddend(e, `已经关闭群『${group_id}』的进群通知`, `群『${group_id}』的进群通知已经处于关闭状态`, 'accept.BlackGroup', group_id, 'other')
   }
-  if (e.msg.includes('开启')) { return await Edit.EditDel(e, `已经开启群『${group_id}』的进群通知`, `群『${group_id}』的进群通知目前已经处于开启状态`, 'accept.BlackGroup', group_id, 'other') }
+  if (e.msg.includes('开启')) {
+    return await Edit.EditRemove(e, `已经开启群『${group_id}』的进群通知`, `群『${group_id}』的进群通知目前已经处于开启状态`, 'accept.BlackGroup', group_id, 'other')
+  }
 }, { permission: 'group.admin' })
 
 export const test = karin.command(/^#(开启|关闭)进群验证$/, async (e) => {

@@ -11,7 +11,7 @@ const JoinGroupMsg = async (e, group_id, user_id) => {
           return false
         case '2':
         case 2:
-          return await e.reply(Config.Other.welcome?.self.GroupMessage || '\n欢迎加入本群୯(⁠*⁠´⁠ω⁠｀⁠*⁠)୬', { at: true })
+          return await e.reply(Config.Other.welcome?.self.text || '\n欢迎加入本群୯(⁠*⁠´⁠ω⁠｀⁠*⁠)୬', { at: true })
       }
     }
     switch (Config.Other.welcome?.default.mode) {
@@ -19,7 +19,7 @@ const JoinGroupMsg = async (e, group_id, user_id) => {
       case 0:
         return false
       default:
-        return await e.reply(Config.Other.welcome?.default.GroupMessage || '\n欢迎加入本群୯(⁠*⁠´⁠ω⁠｀⁠*⁠)୬', { at: true })
+        return await e.reply(Config.Other.welcome?.default.text || '\n欢迎加入本群୯(⁠*⁠´⁠ω⁠｀⁠*⁠)୬', { at: true })
     }
   }
   return false

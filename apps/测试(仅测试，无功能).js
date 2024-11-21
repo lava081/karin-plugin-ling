@@ -1,25 +1,28 @@
-import { karin } from 'node-karin'
-// 仅用于开发者测试部分功能实现，无其他作用(请勿使用，后果自负)
+import { karin, segment, common, Cfg, YamlEditor } from 'node-karin'
+import { Config } from '#components'
 export const test = karin.command(/^测试/, async (e) => {
-  let num = 2
-  let user_id = e.user_id
-  await e.reply(`\n为确保你不是机器人\n请在3分钟内输入下方验证码\n『${num}』`, { at: true })
-  try {
-  for (let i = 3; i >= 0; i--) {
-   const event = await karin.ctx(e, { time: 10, reply: false})
-   if (!(event.msg == num) && (i == 1)) {
-   await e.reply('验证失败，你将会被踢出群聊', { at: true })
-   return true
-   }
-  if (event.msg == num) {
-  await e.reply('\n验证通过，欢迎加入群聊', { at: true })
-  return true
-  } else {
-   await e.reply(`验证码错误，请重新输入\n你还有${i - 1}次机会`)
-  }
-}
-} catch (error) {
-  await e.reply('输入超时，你将会被踢出群聊', { at: true })
-  return true
-  }
+logger.info(`\x1b[34m                 .::::..
+      ::::rrr7QQJi::i:iirijQBBBQB.
+      BBQBBBQBP. ......:::..1BBBB
+      .BuPBBBX  .........r.  vBQL  :Y.
+       rd:iQQ  ..........7L   MB    rr
+        7biLX .::.:....:.:q.  ri    .
+         JX1: .r:.r....i.r::...:.  gi5
+         ..vr .7: 7:. :ii:  v.:iv :BQg
+         : r:  7r:i7i::ri:DBr..2S
+      i.:r:. .i:XBBK...  :BP ::jr   .7.
+      r  i....ir r7.         r.J:   u.
+     :..X: .. .v:           .:.Ji
+    i. ..i .. .u:.     .   77: si   1Q
+   ::.. .r .. :P7.r7r..:iLQQJ: rv   ..
+  7  iK::r  . ii7r LJLrL1r7DPi iJ     r
+    .  ::.:   .  ri 5DZDBg7JR7.:r:   i.
+   .Pi r..r7:     i.:XBRJBY:uU.ii:.  .
+   QB rJ.:rvDE: .. ri uv . iir.7j r7.
+  iBg ::.7251QZ. . :.      irr:Iu: r.
+   QB  .:5.71Si..........  .sr7ivi:U
+   7BJ .7: i2. ........:..  sJ7Lvr7s
+    jBBdD. :. ........:r... YB  Bi
+       :7j1.                 :  :\x1b[0m`);
+
 }, { name: '测试', priority: '-1' })

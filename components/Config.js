@@ -45,9 +45,16 @@ class Config {
   get Other () {
     return this.getDefOrConfig('other')
   }
-
+  
+  get Cof () {
+    return this.getDefOrConfig('COF')
+  }
+  
   get state () {
     return this.getDefOrConfig('state')
+  }
+  get GroupYaml() {
+    return this.getDefOrConfig('group')
   }
 
   /** 默认配置和用户配置 */

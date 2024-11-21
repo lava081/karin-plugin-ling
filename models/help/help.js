@@ -51,6 +51,16 @@ export const helpList = [
         title: '#开启/关闭进群验证',
         desc: '开启进群验证后，新进入的用户需要输入验证码',
       },
+      {
+        icon: 17,
+        title: '#开启/关闭进群通知',
+        desc: '关闭后不处理当前群的进群通知',
+      },
+      {
+        icon: 23,
+        title: '#上/下班',
+        desc: '处于下班群聊将不会处理任何消息',
+      },
     ],
   },
   {
@@ -113,11 +123,6 @@ export const helpList = [
     auth: 'master',
     list: [
       {
-        icon: 17,
-        title: '#开启/关闭进群通知',
-        desc: '关闭后不处理当前群的进群通知',
-      },
-      {
         icon: 18,
         title: '#拉黑/拉白<@用户>',
         desc: '拉黑用户或者拉白用户',
@@ -141,11 +146,6 @@ export const helpList = [
         icon: 22,
         title: '#Karin设置',
         desc: '可对Karin的配置文件进行控制',
-      },
-      {
-        icon: 23,
-        title: '#上/下班',
-        desc: '处于下班群聊将不会处理任何消息',
       },
       {
         icon: 25,

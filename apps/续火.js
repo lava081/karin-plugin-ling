@@ -1,7 +1,7 @@
 import { karin, segment } from 'node-karin'
 import { Config } from '#components'
 
-export const 续火 = karin.task('续火', Config.Cof.corn || '0 0 0 * * ?', async () => {
+export const 续火 = karin.task('续火', Config.Cof.cron || '0 0 0 * * ?', async () => {
   const bots = karin.getBotAll()
   const list = ['group', 'friend']
   for (const type of list) {

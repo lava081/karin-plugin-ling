@@ -4,7 +4,7 @@ import { 编辑文件 } from '#lib'
 import fs from 'fs'
 import YAML from 'yaml'
 
-export const 黑白名单 = karin.command(/^#(取消)?(拉黑|拉白)(群)?/, async (e) => {
+export const 黑白名单 = karin.command(/^#(取消)?(拉黑|拉白)(群)?[a-zA-Z0-9]*$/, async (e) => {
   let id
   if (!e.msg.includes('群')) {
     id = e.at.length ? e.at[0] : e.msg.replace(/#(取消)?(拉黑|拉白)/, '').trim()
@@ -26,7 +26,7 @@ export const 撤回 = karin.command(/^#?撤回$/, async (e) => {
   e.bot.RecallMessage(e.contact, e.message_id)
 }, { name: '撤回', priority: '-1', permission: 'group.admin' })
 
-export const 清屏撤回 = karin.command(/^#清屏(\d+)?/, async (e) => {
+export const 清屏撤回 = karin.command(/^#清屏(\d*)$/, async (e) => {
   const match = e.msg.replace(/#清屏/, '').trim() || 50
   const msg_ids = await e.bot.GetHistoryMessage(e.contact, e.message_id, match)
   const msg_id_list = msg_ids.map(item => item.message_id)
@@ -36,7 +36,7 @@ export const 清屏撤回 = karin.command(/^#清屏(\d+)?/, async (e) => {
   }
 }, { name: '清屏', priority: '-1', permission: 'group.admin' })
 
-export const QuitGroup = karin.command(/^#?退群/, async (e) => {
+export const QuitGroup = karin.command(/^#?退群[a-zA-Z0-9]*$/, async (e) => {
   const group_id = e.msg.replace(/#?退群/g, '').trim() || e.group_id
   if (group_id !== e.group_id && !e.isMaster && !e.isAdmin) return e.reply('只有主人才能操作其他群')
 
@@ -66,7 +66,7 @@ export const QuitGroup = karin.command(/^#?退群/, async (e) => {
 /**
  * 看群头像
 **/
-export const SeeImg = karin.command(/^#(看|取)头像/, async (e) => {
+export const SeeImg = karin.command(/^#(看|取)头像[a-zA-Z0-9]*$/, async (e) => {
   const userId = e.at.length ? e.at[0] : e.msg.replace(/#(看|取)头像/, '').trim()
   if (!userId) {
     await e.reply('请指定用户', { at: true })
@@ -81,7 +81,7 @@ export const SeeImg = karin.command(/^#(看|取)头像/, async (e) => {
 /**
  * 看群头像
  */
-export const SeeGroupImg = karin.command(/^#(看|取)群头像/, async (e) => {
+export const SeeGroupImg = karin.command(/^#(看|取)群头像[a-zA-Z0-9]*$/, async (e) => {
   const group_id = e.msg.replace(/^#?(看|取)群头像/, '').trim() || e.group_id
   if (!group_id) return e.reply('请输入正确的群号')
   const Img = e.bot.getGroupAvatarUrl(group_id, 640)

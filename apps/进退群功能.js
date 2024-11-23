@@ -80,7 +80,7 @@ export const deal_group_apply = karin.accept('request.group_apply',
   }
 )
 
-export const Notification = karin.command(/^#(开启|关闭)进群通知/, async (e) => {
+export const Notification = karin.command(/^#(开启|关闭)进群通知[a-zA-Z0-9]*$/, async (e) => {
   const group_id = e.msg.replace(/#(开启|关闭)进群通知/, '').trim() || e.group_id
   if (group_id !== e.group_id && !e.isMaster && !e.isAdmin) return e.reply('只有主人才能操作其他群')
   if (!group_id) return e.reply('请输入正确的群号')

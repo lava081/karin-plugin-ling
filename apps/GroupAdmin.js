@@ -30,7 +30,7 @@ export const muteAll = karin.command(/^#?全体(禁言|解禁)$/, async (e) => {
 /**
  * 设置/取消管理员
  */
-export const setAdmin = karin.command(/^#(设置|取消)管理/, async (e) => {
+export const setAdmin = karin.command(/^#(设置|取消)管理[a-zA-Z0-9]*$/, async (e) => {
   if (!e.isGroup) return e.reply('请在群聊中执行')
   /** 只有bot为群主才可以使用 */
   const info = await e.bot.GetGroupMemberInfo(e.group_id, e.self_id)
@@ -107,7 +107,7 @@ export const setGroupTitle = karin.command(/^#(申请|我要)头衔/, async (e) 
 /**
  * 踢人
  */
-export const kickMember = karin.command(/^#踢/, async (e) => {
+export const kickMember = karin.command(/^#踢[a-zA-Z0-9]*$/, async (e) => {
   if (!e.isGroup) return e.reply('请在群聊中执行')
   let userId = ''
 
@@ -164,7 +164,7 @@ export const kickMember = karin.command(/^#踢/, async (e) => {
 /**
  * 解禁
  */
-export const UnBanMember = karin.command(/^#解禁/, async (e) => {
+export const UnBanMember = karin.command(/^#解禁[a-zA-Z0-9]*$/, async (e) => {
   if (!e.isGroup) return e.reply('请在群聊中执行')
   const info = await e.bot.GetGroupMemberInfo(e.group_id, e.self_id)
   if (!(['owner', 'admin'].includes(info.role))) {
@@ -218,7 +218,7 @@ export const UnBanMember = karin.command(/^#解禁/, async (e) => {
 }, { name: '解禁', priority: '-1', permission: 'group.admin' })
 
 export const BanMember = karin.command(
-  /^#?禁言(\d+|[零一壹二两三四五六七八九十百千万亿]+)?(秒|分|分钟|时|小时|天)?/,
+  /^#?禁言(\d+|[零一壹二两三四五六七八九十百千万亿]+)?(秒|分|分钟|时|小时|天)?$/,
   async (e) => {
     if (!e.isGroup) return e.reply('请在群聊中执行')
 
